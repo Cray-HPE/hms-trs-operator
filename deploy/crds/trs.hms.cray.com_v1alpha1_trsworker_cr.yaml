@@ -1,0 +1,23 @@
+apiVersion: trs.hms.cray.com/v1alpha1
+kind: TRSWorker
+metadata:
+  name: test1-http-v1-trsworker
+spec:
+  worker_type: "http"
+  worker_version: "v1"
+---
+apiVersion: trs.hms.cray.com/v1alpha1
+kind: TRSWorker
+metadata:
+  name: test2-http-v1-trsworker
+spec:
+  worker_type: "http"
+  worker_version: "v1"
+---
+apiVersion: trs.hms.cray.com/v1alpha1
+kind: TRSWorker
+metadata:
+  name: test1-http-v2-trsworker
+spec:
+  worker_type: "http"
+  worker_version: "v2"

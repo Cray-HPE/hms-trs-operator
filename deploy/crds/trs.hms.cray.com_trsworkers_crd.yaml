@@ -1,0 +1,63 @@
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: trsworkers.trs.hms.cray.com
+spec:
+  additionalPrinterColumns:
+  - JSONPath: .spec.worker_type
+    description: The type of worker this deployment is using
+    name: Worker Type
+    type: string
+  - JSONPath: .spec.worker_version
+    description: The version of worker this deployment is using
+    name: Worker Version
+    type: string
+  group: trs.hms.cray.com
+  names:
+    kind: TRSWorker
+    listKind: TRSWorkerList
+    plural: trsworkers
+    singular: trsworker
+  scope: Namespaced
+  subresources:
+    status: {}
+  validation:
+    openAPIV3Schema:
+      description: TRSWorker is the Schema for the trsworkers API
+      properties:
+        apiVersion:
+          description: 'APIVersion defines the versioned schema of this representation
+            of an object. Servers should convert recognized schemas to the latest
+            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+          type: string
+        kind:
+          description: 'Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+          type: string
+        metadata:
+          type: object
+        spec:
+          description: TRSWorkerSpec defines the desired state of TRSWorker
+          properties:
+            worker_type:
+              enum:
+              - http
+              type: string
+            worker_version:
+              enum:
+              - v1
+              type: string
+          required:
+          - worker_type
+          - worker_version
+          type: object
+        status:
+          description: TRSWorkerStatus defines the observed state of TRSWorker
+          type: object
+      type: object
+  version: v1alpha1
+  versions:
+  - name: v1alpha1
+    served: true
+    storage: true

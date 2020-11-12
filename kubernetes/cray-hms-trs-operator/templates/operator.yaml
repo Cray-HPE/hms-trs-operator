@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cray-hms-trs-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: cray-hms-trs-operator
+  template:
+    metadata:
+      labels:
+        name: cray-hms-trs-operator
+    spec:
+      serviceAccountName: cray-hms-trs-operator
+      containers:
+        - name: cray-hms-trs-operator
+          image: {{ include "image-prefix" .Values }}cray/hms-trs-operator:{{ include "image-tag" . }}
+          env:
+            - name: WATCH_NAMESPACE
+              value: "{{ .Values.watchNamespace }}"
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "cray-hms-trs-operator"
+            - name: TRS_IMAGE_PREFIX
+              value: "{{ include "image-prefix" .Values }}"
+
+            - name: TRS_WORKER_LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: cray-hms-trs-operator-config
+                  key: cray-hms-trs-operator.worker.log_level
+            - name: TRS_WORKER_KAFKA_BROKER_SPEC
+              valueFrom:
+                configMapKeyRef:
+                  name: cray-hms-trs-operator-config
+                  key: cray-hms-trs-operator.worker.kafka_broker_spec
+            - name: TRS_KAFKA_CLUSTER_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: cray-hms-trs-operator-config
+                  key: cray-hms-trs-operator.worker.kafka_cluster_name

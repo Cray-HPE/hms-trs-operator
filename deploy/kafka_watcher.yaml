@@ -1,0 +1,58 @@
+# The deployment using this TRSWorker really needs to wait for the topics to actually have been created before
+# starting up. This is because in case the Kafka server is configured to allow topics to be created as they are used
+# this would cause a conflict in the operator which would be bad.
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kafka-topics-watcher-crb
+  namespace: services
+subjects:
+  - kind: ServiceAccount
+    name: kafka-topics-watcher
+    namespace: services
+roleRef:
+  kind: ClusterRole
+  name: kafka-topics-watcher-cr
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kafka-topics-watcher
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kafka-topics-watcher-cr
+rules:
+  - apiGroups: ["kafka.strimzi.io"]
+    resources: ["kafkatopics"]
+    verbs: ["get", "list"]
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "wait-for-kafka-topics"
+spec:
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      restartPolicy: Never
+      serviceAccountName: "kafka-topics-watcher"
+      containers:
+        - name: "wait-for-kafka-topics"
+          image: "dtr.dev.cray.com/loftsman/docker-kubectl"
+          command:
+            - /bin/sh
+            - -c
+            - while [ "`kubectl -n services get kafkatopics.kafka.strimzi.io trs-testapp1-http-v1-rcv -o jsonpath='{.status.conditions[0].type}'`" != "Ready" ]; do
+                echo "Waiting for trs-testapp1-http-v1-rcv to be Ready";
+                sleep 3;
+              done;
+              while [ "`kubectl -n services get kafkatopics.kafka.strimzi.io trs-testapp1-http-v1-send -o jsonpath='{.status.conditions[0].type}'`" != "Ready" ]; do
+                echo "Waiting for trs-testapp1-http-v1-send to be Ready";
+                sleep 3;
+              done;
+              echo "Kafka topics reported ready.";

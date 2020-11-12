@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trs-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: trs-operator
+  template:
+    metadata:
+      labels:
+        name: trs-operator
+    spec:
+      serviceAccountName: trs-operator
+      containers:
+        - name: trs-operator
+          image: cray/hms-trs-operator
+          command:
+          - trs-operator
+          imagePullPolicy: Never
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "trs-operator"
