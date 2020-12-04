@@ -1,0 +1,32 @@
+# The deployment using this TRSWorker really needs to wait for the topics to actually have been created before
+# starting up. This is because in case the Kafka server is configured to allow topics to be created as they are used
+# this would cause a conflict in the operator which would be bad.
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kafka-topics-watcher-crb
+  namespace: {{ .Values.watchNamespace }}
+subjects:
+  - kind: ServiceAccount
+    name: kafka-topics-watcher
+    namespace: {{ .Values.watchNamespace }}
+roleRef:
+  kind: ClusterRole
+  name: kafka-topics-watcher-cr
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kafka-topics-watcher
+  namespace: {{ .Values.watchNamespace }}
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: kafka-topics-watcher-cr
+rules:
+  - apiGroups: ["kafka.strimzi.io"]
+    resources: ["kafkatopics"]
+    verbs: ["get", "list"]

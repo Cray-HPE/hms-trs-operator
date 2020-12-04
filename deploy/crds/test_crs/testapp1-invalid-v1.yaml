@@ -1,0 +1,7 @@
+apiVersion: trs.hms.cray.com/v1alpha1
+kind: TRSWorker
+metadata:
+  name: testapp1
+spec:
+  worker_type: "invalid"
+  worker_version: "v1"

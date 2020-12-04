@@ -1,0 +1,13 @@
+apiVersion: kafka.strimzi.io/v1beta1
+kind: KafkaTopic
+metadata:
+  labels:
+    strimzi.io/cluster: k8s-kafka
+  name: cray-dmtf-resource-event
+spec:
+  config:
+    retention.ms: "14400000"
+    segment.bytes: "1048576"
+  partitions: 4
+  replicas: 2
+  topicName: cray-dmtf-resource-event

@@ -1,0 +1,11 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: trs-operator
+subjects:
+- kind: ServiceAccount
+  name: trs-operator
+roleRef:
+  kind: Role
+  name: trs-operator
+  apiGroup: rbac.authorization.k8s.io

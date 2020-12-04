@@ -1,0 +1,29 @@
+# Always have a RoleBinding that lives in the same namespace as the deployment.
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cray-hms-trs-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cray-hms-trs-operator
+subjects:
+  - kind: ServiceAccount
+    name: cray-hms-trs-operator
+
+{{ if ne .Release.Namespace .Values.watchNamespace }}
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cray-hms-trs-operator
+  namespace: {{ .Values.watchNamespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cray-hms-trs-operator
+subjects:
+  - kind: ServiceAccount
+    name: cray-hms-trs-operator
+    namespace: {{ .Release.Namespace }}
+{{ end }}

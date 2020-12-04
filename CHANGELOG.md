@@ -1,0 +1,71 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.2.4] - 2020-11-04
+
+### Security
+
+- CASMHMS-4109 - Updated Azure go-autorest vendor package for security updates.
+
+## [1.2.3] - 2020-11-02
+
+### Security
+
+- CASMHMS-4148 - Updated Go module vendor code for security update.
+
+## [1.2.2] - 2020-10-21
+
+### Security
+
+- CASMHMS-4105 - Updated base Golang Alpine image to resolve libcrypto vulnerability.
+
+## [1.2.1] - 2020-09-10
+
+### Security
+
+- CASMHMS-3998 - More trusted baseOS updates for hms-trs-operator.
+
+## [1.2.0] - 2020-08-12
+
+### Changed
+
+- CASMHMS-3350 - Updated hms-trs-operator to use the latest trusted baseOS images.
+
+## [1.1.0] - 2020-06-03
+
+### Changed
+
+- Support for online upgrade and rollbacks with the TRS operator helm chart.
+
+## [1.0.2] - 2020-03-01
+
+### Fixed
+
+- Added product field to Jenkins file.
+
+## [1.0.1] - 2020-02-26
+
+### Added
+
+- RBAC for Kafka topic watcher service account so services can block on topic creation and not race the operator.
+
+## [1.0.0] - 2020-02-26
+
+### Added
+
+- First version.
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
