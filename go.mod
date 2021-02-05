@@ -10,7 +10,7 @@ require (
 	k8s.io/apimachinery v0.0.0
 	k8s.io/client-go v12.0.0+incompatible
 	sigs.k8s.io/controller-runtime v0.4.0
-	stash.us.cray.com/HMS/hms-trs-kafkalib v1.2.2
+	stash.us.cray.com/HMS/hms-trs-kafkalib v1.4.0
 )
 
 // Pinned to kubernetes-1.16.2
