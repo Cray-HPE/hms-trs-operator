@@ -3,7 +3,7 @@ module stash.us.cray.com/HMS/hms-trs-operator
 go 1.13
 
 require (
-	github.com/Azure/go-autorest/autorest v0.11.10 // indirect
+	github.com/Azure/go-autorest/autorest v0.11.18 // indirect
 	github.com/operator-framework/operator-sdk v0.15.1
 	github.com/spf13/pflag v1.0.5
 	k8s.io/api v0.0.0
