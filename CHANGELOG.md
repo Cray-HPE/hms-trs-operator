@@ -5,17 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.2] - 2021-04-20
+
+### Changed
+
+- Updated Dockerfile to pull base images from Artifactory instead of DTR.
+
 ## [1.4.1] - 2021-03-09
 
 ### Changed
 
-- CASMHMS-4329 - Updated Azure go-autorest vendor package from v0.11.10 to v0.11.18 for securty updates.
+- CASMHMS-4329 - Updated Azure go-autorest vendor package from v0.11.10 to v0.11.18 for security updates.
 
 ## [1.4.0] - 2021-02-02
 
 ### Changed
 
-- added license headers to code
+- Added license headers to code.
 
 ## [1.3.0] - 2021-01-14
 
