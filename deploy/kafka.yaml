@@ -15,8 +15,7 @@ spec:
       hostname: k8s-kafka
       containers:
         - name:  k8s-kafka
-          #TODO: need to push this image to Artifactory
-          image: dtr.dev.cray.com/confluentinc/cp-kafka:5.4.0
+          image: arti.dev.cray.com/third-party-docker-stable-local/confluentinc/cp-kafka:6.1.1
           ports:
             - containerPort: 30909
               name:          kafka1
