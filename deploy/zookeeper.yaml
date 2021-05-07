@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name:  zookeeper
-          image: dtr.dev.cray.com/confluentinc/cp-zookeeper:5.4.0
+          image: arti.dev.cray.com/third-party-docker-stable-local/confluentinc/cp-zookeeper:6.1.1
           ports:
             - containerPort: 2181
           env:
