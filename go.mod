@@ -1,6 +1,6 @@
 module stash.us.cray.com/HMS/hms-trs-operator
 
-go 1.13
+go 1.16
 
 require (
 	github.com/Azure/go-autorest/autorest v0.11.18 // indirect
