@@ -980,6 +980,6 @@ sigs.k8s.io/testing_frameworks v0.1.2 h1:vK0+tvjF0BZ/RYFeZ1E6BYBwHJJXhjuZ3TdsEKH
 sigs.k8s.io/testing_frameworks v0.1.2/go.mod h1:ToQrwSC3s8Xf/lADdZp3Mktcql9CG0UAmdJG9th5i0w=
 sigs.k8s.io/yaml v1.1.0 h1:4A07+ZFc2wgJwo8YNlQpr1rVlgUDlxXHhPJciaPY5gs=
 sigs.k8s.io/yaml v1.1.0/go.mod h1:UJmg0vDUVViEyp3mgSv9WPwZCDxu4rQW1olrI1uml+o=
-stash.us.cray.com/HMS/hms-trs-kafkalib v1.4.0 h1:9rOfEbKr62dO5SS1nxFm6YTgp79z3O/UAnhW9+Uh9CM=
-stash.us.cray.com/HMS/hms-trs-kafkalib v1.4.0/go.mod h1:mRVX41+rV1PqToi6tPJp52OvseeAUoCrwU4qo1Fauy4=
+stash.us.cray.com/HMS/hms-trs-kafkalib v1.5.0 h1:ZQaj2WqFDPLZWmg9Fyia/b/ixMB/nb3lKK5ogJZD0vI=
+stash.us.cray.com/HMS/hms-trs-kafkalib v1.5.0/go.mod h1:zJtT+luyQKd24K6gCfl/311E88A8BBgxd/MfwfvXfVU=
 vbom.ml/util v0.0.0-20160121211510-db5cfe13f5cc/go.mod h1:so/NYdZXCz+E3ZpW0uAoCj6uzU2+8OWDFv/HxUSs7kI=
