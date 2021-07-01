@@ -22,7 +22,7 @@
 # Dockerfile for building HMS TRS Operator.
 
 # Build base just has the packages installed we need.
-FROM arti.dev.cray.com/baseos-docker-master-local/golang:1.14-alpine3.12 AS build-base
+FROM arti.dev.cray.com/baseos-docker-master-local/golang:1.16-alpine3.13 AS build-base
 
 RUN set -ex \
     && apk update \
@@ -34,6 +34,8 @@ RUN set -ex \
 FROM build-base AS base
 
 WORKDIR /build
+
+RUN go env -w GO111MODULE=auto
 
 # Copy all the necessary files to the image.
 COPY cmd     cmd
@@ -55,8 +57,8 @@ RUN set -ex \
 
 ## Final Stage ###
 
-FROM arti.dev.cray.com/baseos-docker-master-local/alpine:3.12
-LABEL maintainer="Cray, Inc."
+FROM arti.dev.cray.com/baseos-docker-master-local/alpine:3.13
+LABEL maintainer="Hewlett Packard Enterprise"
 
 COPY --from=builder /usr/local/bin/hms-trs-operator /usr/local/bin
 
