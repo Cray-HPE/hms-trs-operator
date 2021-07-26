@@ -14,6 +14,9 @@ github.com/Azure/go-autorest/autorest/date
 github.com/Azure/go-autorest/logger
 # github.com/Azure/go-autorest/tracing v0.6.0
 github.com/Azure/go-autorest/tracing
+# github.com/Cray-HPE/hms-trs-kafkalib v1.5.2
+## explicit
+github.com/Cray-HPE/hms-trs-kafkalib/pkg/trs-kafkalib
 # github.com/PuerkitoBio/purell v1.1.1
 github.com/PuerkitoBio/purell
 # github.com/PuerkitoBio/urlesc v0.0.0-20170810143723-de5bf2ad4578
@@ -471,9 +474,6 @@ sigs.k8s.io/controller-runtime/pkg/webhook/internal/certwatcher
 sigs.k8s.io/controller-runtime/pkg/webhook/internal/metrics
 # sigs.k8s.io/yaml v1.1.0
 sigs.k8s.io/yaml
-# stash.us.cray.com/HMS/hms-trs-kafkalib v1.5.0
-## explicit
-stash.us.cray.com/HMS/hms-trs-kafkalib/pkg/trs-kafkalib
 # k8s.io/api => k8s.io/api v0.0.0-20191016110408-35e52d86657a
 # k8s.io/apiextensions-apiserver => k8s.io/apiextensions-apiserver v0.0.0-20191016113550-5357c4baaf65
 # k8s.io/apimachinery => k8s.io/apimachinery v0.0.0-20191004115801-a2eda9f80ab8

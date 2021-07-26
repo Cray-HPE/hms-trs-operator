@@ -35,9 +35,9 @@ import (
 	_ "k8s.io/client-go/plugin/pkg/client/auth"
 	"k8s.io/client-go/rest"
 
-	"stash.us.cray.com/HMS/hms-trs-operator/pkg/apis"
-	"stash.us.cray.com/HMS/hms-trs-operator/pkg/controller"
-	"stash.us.cray.com/HMS/hms-trs-operator/version"
+	"github.com/Cray-HPE/hms-trs-operator/pkg/apis"
+	"github.com/Cray-HPE/hms-trs-operator/pkg/controller"
+	"github.com/Cray-HPE/hms-trs-operator/version"
 
 	"github.com/operator-framework/operator-sdk/pkg/k8sutil"
 	kubemetrics "github.com/operator-framework/operator-sdk/pkg/kube-metrics"

@@ -24,7 +24,7 @@
 package apis
 
 import (
-	"stash.us.cray.com/HMS/hms-trs-operator/pkg/apis/kafka/v1beta1"
+	"github.com/Cray-HPE/hms-trs-operator/pkg/apis/kafka/v1beta1"
 )
 
 func init() {

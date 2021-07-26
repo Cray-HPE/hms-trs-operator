@@ -1,16 +1,16 @@
-module stash.us.cray.com/HMS/hms-trs-operator
+module github.com/Cray-HPE/hms-trs-operator
 
 go 1.16
 
 require (
 	github.com/Azure/go-autorest/autorest v0.11.18 // indirect
+	github.com/Cray-HPE/hms-trs-kafkalib v1.5.2
 	github.com/operator-framework/operator-sdk v0.15.1
 	github.com/spf13/pflag v1.0.5
 	k8s.io/api v0.0.0
 	k8s.io/apimachinery v0.0.0
 	k8s.io/client-go v12.0.0+incompatible
 	sigs.k8s.io/controller-runtime v0.4.0
-	stash.us.cray.com/HMS/hms-trs-kafkalib v1.5.0
 )
 
 // Pinned to kubernetes-1.16.2

@@ -2,4 +2,4 @@ apiVersion: v1
 name: cray-hms-trs-operator
 description: Cray HMS TRS Operator
 home: "HMS/hms-trs-operator"
-version: 1.5.2
+version: 1.5.3
