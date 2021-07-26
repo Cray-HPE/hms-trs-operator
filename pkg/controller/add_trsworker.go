@@ -24,7 +24,7 @@
 package controller
 
 import (
-	"stash.us.cray.com/HMS/hms-trs-operator/pkg/controller/trsworker"
+	"github.com/Cray-HPE/hms-trs-operator/pkg/controller/trsworker"
 )
 
 func init() {
