@@ -44,10 +44,10 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 	"sigs.k8s.io/controller-runtime/pkg/source"
 	"sort"
-	trs_kafka "stash.us.cray.com/HMS/hms-trs-kafkalib/pkg/trs-kafkalib"
-	"stash.us.cray.com/HMS/hms-trs-operator/pkg/apis/kafka/v1beta1"
-	trsv1alpha1 "stash.us.cray.com/HMS/hms-trs-operator/pkg/apis/trs/v1alpha1"
-	"stash.us.cray.com/HMS/hms-trs-operator/pkg/kafka_topics"
+	trs_kafka "github.com/Cray-HPE/hms-trs-kafkalib/pkg/trs-kafkalib"
+	"github.com/Cray-HPE/hms-trs-operator/pkg/apis/kafka/v1beta1"
+	trsv1alpha1 "github.com/Cray-HPE/hms-trs-operator/pkg/apis/trs/v1alpha1"
+	"github.com/Cray-HPE/hms-trs-operator/pkg/kafka_topics"
 	"strings"
 )
 
