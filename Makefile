@@ -29,7 +29,7 @@ CHART_VERSION ?= $(shell cat .version)
 all: image chart
 
 image:
-	docker build --pull ${DOCKER_ARGS} --tag '${NAME}:${VERSION}' .
+	docker build ${NO_CACHE} --pull ${DOCKER_ARGS} --tag '${NAME}:${VERSION}' .
 
 chart:
 	helm dep up ${CHART_PATH}/${CHART_NAME}
