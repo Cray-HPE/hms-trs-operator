@@ -74,4 +74,7 @@ ENV TRS_WORKER_LOG_LEVEL=INFO
 ENV TRS_WORKER_KAFKA_BROKER_SPEC=cray-shared-kafka-kafka-bootstrap.services.svc.cluster.local:9092
 ENV TRS_KAFKA_CLUSTER_NAME=cray-shared-kafka
 
+# nobody 65534:65534
+USER 65534:65534
+
 CMD ["sh", "-c", "hms-trs-operator"]
