@@ -69,7 +69,7 @@ RUN set -ex \
     && apk add --no-cache curl
 
 ENV WATCH_NAMESPACE=services
-ENV TRS_IMAGE_PREFIX="dtr.dev.cray.com/"
+ENV TRS_IMAGE_PREFIX="artifactory.algol60.net/csm-docker/stable/"
 ENV TRS_WORKER_LOG_LEVEL=INFO
 ENV TRS_WORKER_KAFKA_BROKER_SPEC=cray-shared-kafka-kafka-bootstrap.services.svc.cluster.local:9092
 ENV TRS_KAFKA_CLUSTER_NAME=cray-shared-kafka

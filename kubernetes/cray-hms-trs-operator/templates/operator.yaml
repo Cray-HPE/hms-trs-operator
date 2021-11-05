@@ -15,7 +15,7 @@ spec:
       serviceAccountName: cray-hms-trs-operator
       containers:
         - name: cray-hms-trs-operator
-          image: {{ include "image-prefix" .Values }}cray/hms-trs-operator:{{ include "image-tag" . }}
+          image: {{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}
           env:
             - name: WATCH_NAMESPACE
               value: "{{ .Values.watchNamespace }}"
@@ -26,7 +26,7 @@ spec:
             - name: OPERATOR_NAME
               value: "cray-hms-trs-operator"
             - name: TRS_IMAGE_PREFIX
-              value: "{{ include "image-prefix" .Values }}"
+              value: "{{ .Values.image.prefix }}"
 
             - name: TRS_WORKER_LOG_LEVEL
               valueFrom:
