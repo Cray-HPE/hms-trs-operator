@@ -17,8 +17,6 @@ pipeline {
         VERSION = getDockerBuildVersion(isStable: env.IS_STABLE)
         DOCKER_ARGS = getDockerBuildArgs(name: env.NAME, description: env.DESCRIPTION, version: env.VERSION)
         NO_CACHE = "--no-cache"
-        CHART_NAME = "cray-hms-trs-operator"
-        CHART_VERSION = getChartVersion(version: env.VERSION)
     }
 
     stages {
@@ -28,18 +26,10 @@ pipeline {
             }
         }
 
-        stage("Chart") {
-            steps {
-                updateCsmHelmChartAppVersion(chartPath: "${WORKSPACE}/kubernetes/${CHART_NAME}", appVersion:  env.VERSION)
-                sh "make chart"
-            }
-        }
-
         stage("Publish") {
             steps {
                 script {
                     publishCsmDockerImage(image: env.NAME, tag: env.VERSION, isStable: env.IS_STABLE)
-                    publishCsmHelmCharts(component: env.CHART_NAME, chartsPath: "${WORKSPACE}/kubernetes/.packaged", isStable: env.IS_STABLE)
                 }
             }
         }
