@@ -33,9 +33,9 @@ import (
 	"strings"
 
 	trs_kafka "github.com/Cray-HPE/hms-trs-kafkalib/pkg/trs-kafkalib"
-	"github.com/Cray-HPE/hms-trs-operator/pkg/apis/kafka/v1beta1"
-	trsv1alpha1 "github.com/Cray-HPE/hms-trs-operator/pkg/apis/trs/v1alpha1"
-	"github.com/Cray-HPE/hms-trs-operator/pkg/kafka_topics"
+	"github.com/Cray-HPE/hms-trs-operator/v2/pkg/apis/kafka/v1beta1"
+	trsv1alpha1 "github.com/Cray-HPE/hms-trs-operator/v2/pkg/apis/trs/v1alpha1"
+	"github.com/Cray-HPE/hms-trs-operator/v2/pkg/kafka_topics"
 	v1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
