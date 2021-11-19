@@ -10,4 +10,4 @@ maintainers:
     url: https://github.com/orgs/Cray-HPE/teams/hardware-management
 appVersion: "1.8.0"
 annotations:
-  artifacthub.io/images: ""
+  artifacthub.io/license: "MIT"
