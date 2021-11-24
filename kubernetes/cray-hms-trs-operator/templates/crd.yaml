@@ -4,14 +4,18 @@ metadata:
   name: trsworkers.trs.hms.cray.com
 spec:
   additionalPrinterColumns:
-  - JSONPath: .spec.worker_type
-    description: The type of worker this deployment is using
-    name: Worker Type
-    type: string
-  - JSONPath: .spec.worker_version
-    description: The version of worker this deployment is using
-    name: Worker Version
-    type: string
+    - JSONPath: .spec.worker_type
+      description: The type of worker this deployment is using
+      name: Worker Type
+      type: string
+    - JSONPath: .spec.worker_version
+      description: The version of worker this deployment is using
+      name: Worker Version
+      type: string
+    - JSONPath: .spec.worker_image_tag
+      description: The tag that should be used when pulling the image
+      name: Worker Image Tag
+      type: string
   group: trs.hms.cray.com
   names:
     kind: TRSWorker
@@ -40,17 +44,19 @@ spec:
         spec:
           description: TRSWorkerSpec defines the desired state of TRSWorker
           properties:
+            worker_image_tag:
+              type: string
             worker_type:
               enum:
-              - http
+                - http
               type: string
             worker_version:
               enum:
-              - v1
+                - v1
               type: string
           required:
-          - worker_type
-          - worker_version
+            - worker_type
+            - worker_version
           type: object
         status:
           description: TRSWorkerStatus defines the observed state of TRSWorker
@@ -58,6 +64,6 @@ spec:
       type: object
   version: v1alpha1
   versions:
-  - name: v1alpha1
-    served: true
-    storage: true
+    - name: v1alpha1
+      served: true
+      storage: true
