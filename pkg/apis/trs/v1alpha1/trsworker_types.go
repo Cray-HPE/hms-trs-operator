@@ -37,6 +37,8 @@ type TRSWorkerSpec struct {
 
 	// +kubebuilder:validation:Enum=v1
 	WorkerVersion string `json:"worker_version"`
+
+	WorkerImageTag string `json:"worker_image_tag,omitempty"`
 }
 
 // TRSWorkerStatus defines the observed state of TRSWorker
@@ -52,6 +54,7 @@ type TRSWorkerStatus struct {
 // +kubebuilder:resource:path=trsworkers,scope=Namespaced
 // +kubebuilder:printcolumn:name="Worker Type",type="string",JSONPath=".spec.worker_type",description="The type of worker this deployment is using"
 // +kubebuilder:printcolumn:name="Worker Version",type="string",JSONPath=".spec.worker_version",description="The version of worker this deployment is using"
+// +kubebuilder:printcolumn:name="Worker Image Tag",type="string",JSONPath=".spec.worker_image_tag",description="The tag that should be used when pulling the image"
 type TRSWorker struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
