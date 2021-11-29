@@ -12,6 +12,10 @@ spec:
     description: The version of worker this deployment is using
     name: Worker Version
     type: string
+  - JSONPath: .spec.worker_image_tag
+    description: The tag that should be used when pulling the image
+    name: Worker Image Tag
+    type: string
   group: trs.hms.cray.com
   names:
     kind: TRSWorker
@@ -40,6 +44,8 @@ spec:
         spec:
           description: TRSWorkerSpec defines the desired state of TRSWorker
           properties:
+            worker_image_tag:
+              type: string
             worker_type:
               enum:
               - http

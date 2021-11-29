@@ -27,6 +27,10 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	trs_kafka "github.com/Cray-HPE/hms-trs-kafkalib/pkg/trs-kafkalib"
+	"github.com/Cray-HPE/hms-trs-operator/pkg/apis/kafka/v1beta1"
+	trsv1alpha1 "github.com/Cray-HPE/hms-trs-operator/pkg/apis/trs/v1alpha1"
+	"github.com/Cray-HPE/hms-trs-operator/pkg/kafka_topics"
 	v1 "k8s.io/api/apps/v1"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/errors"
@@ -44,10 +48,6 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 	"sigs.k8s.io/controller-runtime/pkg/source"
 	"sort"
-	trs_kafka "github.com/Cray-HPE/hms-trs-kafkalib/pkg/trs-kafkalib"
-	"github.com/Cray-HPE/hms-trs-operator/pkg/apis/kafka/v1beta1"
-	trsv1alpha1 "github.com/Cray-HPE/hms-trs-operator/pkg/apis/trs/v1alpha1"
-	"github.com/Cray-HPE/hms-trs-operator/pkg/kafka_topics"
 	"strings"
 )
 
@@ -445,8 +445,8 @@ func (r *ReconcileTRSWorker) generateKafkaTopicsForTRSWorker(trsWorker *trsv1alp
 	topicSpec := v1beta1.KafkaTopicSpec{
 		Config: map[string]string{
 			// These settings are the same as what are used for the telemetry topics in SMF. They're overkill.
-			"retention.ms":           "14400000",
-			"segment.bytes":          "1048576",
+			"retention.ms":  "14400000",
+			"segment.bytes": "1048576",
 		},
 		// Make the number of partitions twice the number of workers so that if we increase size later on the
 		// rebalancing will be easy.
@@ -546,10 +546,16 @@ func (r *ReconcileTRSWorker) generateDeploymentForTRSWorker(trsWorker *trsv1alph
 		imagePrefix = ""
 	}
 
+	// Use image tag if supplied.
+	imageTag := "latest"
+	if trsWorker.Spec.WorkerImageTag != "" {
+		imageTag = trsWorker.Spec.WorkerImageTag
+	}
+
 	// Compute the image name from the TRSWorker spec.
 	imageName := strings.Join([]string{"hms", "trs", "worker",
 		trsWorker.Spec.WorkerType, trsWorker.Spec.WorkerVersion}, "-")
-	fullImage := imagePrefix + "cray/" + imageName
+	fullImage := fmt.Sprintf("%scray/%s:%s", imagePrefix, imageName, imageTag)
 
 	deployment := &v1.Deployment{
 		ObjectMeta: metav1.ObjectMeta{
@@ -563,7 +569,7 @@ func (r *ReconcileTRSWorker) generateDeploymentForTRSWorker(trsWorker *trsv1alph
 			},
 			Template: corev1.PodTemplateSpec{
 				ObjectMeta: metav1.ObjectMeta{
-					Annotations: map[string]string {
+					Annotations: map[string]string{
 						"traffic.sidecar.istio.io/excludeOutboundPorts": "8082,9092,2181",
 					},
 					Labels: ls,
