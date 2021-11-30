@@ -1,9 +1,0 @@
-apiVersion: v1
-kind:       ConfigMap
-metadata:
-  name: cray-hms-trs-operator-config
-data:
-  # Passthrough variables directly to the worker deployments.
-  cray-hms-trs-operator.worker.log_level:          "{{ .Values.workerLogLevel }}"
-  cray-hms-trs-operator.worker.kafka_broker_spec:  "{{ .Values.workerKafkaBrokerSpec }}"
-  cray-hms-trs-operator.worker.kafka_cluster_name: "{{ .Values.workerKafkaClusterName }}"
