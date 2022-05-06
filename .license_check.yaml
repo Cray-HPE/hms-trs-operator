@@ -1,0 +1,3 @@
+add_exclude:
+  - ".license_check.yaml"
+  - "deploy/crds/test_crs/*.yaml"
