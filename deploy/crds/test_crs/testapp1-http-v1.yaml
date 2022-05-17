@@ -5,3 +5,4 @@ metadata:
 spec:
   worker_type: "http"
   worker_version: "v1"
+  worker_image_tag: "1.6.0"
