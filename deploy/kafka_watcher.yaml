@@ -43,7 +43,7 @@ spec:
       serviceAccountName: "kafka-topics-watcher"
       containers:
         - name: "wait-for-kafka-topics"
-          image: "arti.dev.cray.com/csm-docker-master-local/docker-kubectl:latest"
+          image: "artifactory.algol60.net/csm-docker/stable/docker-kubectl:1.19.15"
           command:
             - /bin/sh
             - -c
