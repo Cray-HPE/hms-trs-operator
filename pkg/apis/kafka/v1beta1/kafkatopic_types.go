@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * (C) Copyright [2021] Hewlett Packard Enterprise Development LP
+ * (C) Copyright [2021-2022] Hewlett Packard Enterprise Development LP
  *
  * Permission is hereby granted, free of charge, to any person obtaining a
  * copy of this software and associated documentation files (the "Software"),
@@ -24,6 +24,9 @@
 package v1beta1
 
 import (
+	"encoding/json"
+	"fmt"
+
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -34,7 +37,7 @@ type KafkaTopicSpec struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html
 
-	Config map[string]string `json:"config,omitempty"`
+	Config map[string]IntOrString `json:"config,omitempty"`
 
 	// +kubebuilder:validation:Minimum=1
 	Partitions int `json:"partitions"`
@@ -44,6 +47,45 @@ type KafkaTopicSpec struct {
 	Replicas int `json:"replicas"`
 
 	TopicName string `json:"topicName,omitempty"`
+}
+
+func (i KafkaTopicSpec) DeepCopy() KafkaTopicSpec {
+	o := i
+	o.Config = make(map[string]IntOrString)
+	for key, value := range i.Config {
+		o.Config[key] = value.DeepCopy()
+	}
+	return o
+}
+
+type IntOrString struct {
+	// The json marshaling and unmarshaling is handled by the custom
+	// MarshalJSON and UnmarshalJSON functions.
+	// A json annotation is still required by the operator-sdk tool.
+	Value interface{} `json:"-"`
+}
+
+func (i IntOrString) DeepCopy() IntOrString {
+	o := i
+	return o
+}
+
+func (si IntOrString) MarshalJSON() ([]byte, error) {
+	return json.Marshal(si.Value)
+}
+
+func (si *IntOrString) UnmarshalJSON(data []byte) error {
+	var value interface{}
+	err := json.Unmarshal(data, &value)
+	if err != nil {
+		return err
+	}
+	si.Value = value
+	return nil
+}
+
+func (t IntOrString) String() string {
+	return fmt.Sprintf("%v", t.Value)
 }
 
 type ConditionsStruct struct {
@@ -58,8 +100,8 @@ type ConditionsStruct struct {
 type KafkaTopicStatus struct {
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book-v1.book.kubebuilder.io/beyond_basics/generating_crd.html
-	Conditions []ConditionsStruct `json:"conditions,omitempty"`
-	ObservedGeneration int `json:"observedGeneration,omitempty"`
+	Conditions         []ConditionsStruct `json:"conditions,omitempty"`
+	ObservedGeneration int                `json:"observedGeneration,omitempty"`
 }
 
 // +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
