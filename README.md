@@ -66,7 +66,7 @@ docker run -it --rm --network host \
     sh -c "./scripts/generateK8s.sh; chown -R $(id -u):$(id -g) ."
 ```
 
-The script [scripts/generatek8s.sh](scripts/generatek8s.sh) generates the following files by running: `operator-sdk generate k8s` and `operator-sdk generate crds`.
+The script [scripts/generateK8s.sh](scripts/generateK8s.sh) generates the following files by running: `operator-sdk generate k8s` and `operator-sdk generate crds`.
 - [deploy/crds/kafka.strimzi.io_kafkatopics_crd.yaml](deploy/crds/kafka.strimzi.io_kafkatopics_crd.yaml)
 - [deploy/crds/trs.hms.cray.com_trsworkers_crd.yaml](deploy/crds/trs.hms.cray.com_trsworkers_crd.yaml)
 - [pkg/apis/kafka/v1beta1/zz_generated.deepcopy.go](pkg/apis/kafka/v1beta1/zz_generated.deepcopy.go)
