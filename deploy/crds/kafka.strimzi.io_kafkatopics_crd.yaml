@@ -33,7 +33,7 @@ spec:
           properties:
             config:
               additionalProperties:
-                type: string
+                type: object
               type: object
             partitions:
               minimum: 1

@@ -444,11 +444,11 @@ func (r *ReconcileTRSWorker) generateKafkaTopicsForTRSWorker(trsWorker *trsv1alp
 
 	// Keep the configuration the same for both.
 	topicSpec := v1beta1.KafkaTopicSpec{
-		Config: map[string]string{
-			// These settings are the same as what are used for the telemetry topics in SMF. They're overkill.
-			"retention.ms":  "14400000",
-			"segment.bytes": "1048576",
+		Config: map[string]v1beta1.IntOrString{
+			"retention.ms":  v1beta1.IntOrString{"14400000"},
+			"segment.bytes": v1beta1.IntOrString{"1048576"},
 		},
+
 		// Make the number of partitions twice the number of workers so that if we increase size later on the
 		// rebalancing will be easy.
 		Partitions: WorkerCount * 2,

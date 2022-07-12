@@ -1,3 +1,8 @@
 add_exclude:
   - ".license_check.yaml"
+  - ".github/workflows/*.yaml"
+  - "deploy/*.yaml"
+  - "deploy/crds/*.yaml"
   - "deploy/crds/test_crs/*.yaml"
+  - "pkg/apis/kafka/v1beta1/zz_generated.deepcopy.go"
+  - "pkg/apis/trs/v1alpha1/zz_generated.deepcopy.go"
