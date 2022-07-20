@@ -78,3 +78,11 @@ tags
 # End of https://www.gitignore.io/api/go,vim,emacs,visualstudiocode
 cray-hms-trs-operator-*.tgz
 kubernetes/cray-hms-trs-operator/generated_helm
+
+# Prevent certificates from getting checked in
+*.ca
+*.cer
+*.crt
+*.csr
+*.key
+*.pem
